@@ -8,21 +8,21 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-library(EnvStats, quietly = TRUE, warn.conflicts = FALSE, verbose = FALSE) # For Pareto Distribution
-# library(distr)
-x = c(6,2,5,3,5,1,5,7,6,3)
+library(learnr)
+library(EnvStats) # For Pareto Distribution
 ```
 
-
+```{r prepare-x}
+x <- c(6,2,5,3,5,1,5,7,6,3)
+```
 
 ## Discrete Data
 In this tutorial we will refer to [chapter 2 of our textbook](https://floswald.github.io/ScPoEconometrics/sum.html). Please go back there if you have any questions.
 
 I created a vector `x` for you with 10 values, which will be our data in this section:
 
-```{r}
+```{r, exercise.setup="prepare-x"}
 x
 ```
 
@@ -33,7 +33,7 @@ We have seen in chapter 2 of our book that the mean is a measure of *centrality*
 1. Calculate the mean of `x` on a piece of paper by computing $\overline{x}=(x_{1}+...+x_{N})/N$
 2. Now use the `R` function `mean` to do the same thing in the code box below to check your result:
 
-```{r mean1, exercise=TRUE, exercise.eval=TRUE}
+```{r mean1, exercise=TRUE, exercise.eval=TRUE, exercise.setup="prepare-x"}
 
 ```
 
@@ -43,7 +43,7 @@ mean(x)
 
 3. *Discrete* means that there is a finite number of values that $X$ can take on. Use the function `unique` to find out the values contained in `x`. How many distinct values are there? 
 
-```{r unique, exercise=TRUE, exercise.eval=TRUE}
+```{r unique, exercise=TRUE, exercise.eval=TRUE, exercise.setup="prepare-x"}
 
 ```
 
@@ -54,13 +54,13 @@ n=length(u)
 
 By sorting `x` in ascending order, we can easily see that there are groups of values:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE, exercise.setup="prepare-x"}
 sort(x)
 ```
 
 Let's denote $p_k$ the proportion of all entries in `x` that have value $k$. I.e. $p_1 = \frac{\text{number of times }x=x_1}{N}$. We can construct $p_k$ in `R` with
 
-```{r,echo=TRUE}
+```{r,echo=TRUE, exercise.setup="prepare-x"}
 p_k = table(x) / length(x)
 p_k
 ```
@@ -85,20 +85,20 @@ quiz(
 2. Calculate the SD by doing $\sqrt{Var(X)}$.
 3. Check your results again by using functions `var` and `sd` here:
 
-```{r var, exercise=TRUE, exercise.eval=TRUE}
+```{r var, exercise=TRUE, exercise.eval=TRUE, exercise.setup="prepare-x"}
 
 ```
 
 What's going on with the $N-1$ here? For small samples like ours ($N=10$), there is an adjustment we need to make. In estimating the variance, we use the information in `x`, but we also need a *previous* estimate: the mean $\overline{x}$! This means that we loose one *degree of freedom* in the estimation for $Var(X)$ and we are left with $N-1$ instead of $N$ degrees of freedom. Our *weights* or *proportions* $p_k$ therefore now become:
 
-```{r,echo=TRUE}
+```{r,echo=TRUE, exercise.setup="prepare-x"}
 p_k2 = table(x) / (length(x)-1)
 p_k2
 ```
 
 4. Re-compute both variance and standard deviation by grouping equal values, e.g. $Var(X)=p_1 ( x_1 - \overline{x})^2 + \dots + p_N ( x_N - \overline{x})^2$. 
 
-```{r var2, exercise=TRUE, exercise.eval=TRUE}
+```{r var2, exercise=TRUE, exercise.eval=TRUE, exercise.setup="prepare-x"}
 
 ```
 
@@ -110,7 +110,7 @@ p_k2 %*% (unique(sort(x)) - mean(x))^2
 
 Lets finish this part by producing a bar plot of $X$. This is easily achieved with the function `barplot`, whose main input argument is called `height` - the height of each bar. In our case, the height should be the number of times each value appears. We already saw above that `table` computes that for us.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE, exercise.setup="prepare-x"}
 barplot(table(x),col="red",border="dodgerblue",ylab = "Frequency")
 ```
 
