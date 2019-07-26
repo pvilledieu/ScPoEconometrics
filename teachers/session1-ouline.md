@@ -11,7 +11,7 @@ Teacher brings a laptop with Slack, R and Rstudio installed. Our package code is
 	* We want to teach you the basics of data analysis and Econometrics.
 	* We want you to try things out, rather than to be able to proof them formally
 	* For those of you very eager to derive formal and more rigorous insights, there will be ample opportunity later on, in a Masters or a Phd
-	* Our aim is for *everybody* to understand and to be able a linear regression with `R`.
+	* Our aim is for *everybody* to understand and to be able to run a linear regression with `R`.
 * This is a brand new course.
 	* This means that we quite happy to show you plenty of new things, but you should be aware there are still some rough edges. Please be patient if something does not work as expected - we are here to help!
 
