@@ -28,7 +28,7 @@ library(dplyr)
 library(Hmisc)
 library(ggplot2)
 
-showsols <- T
+showsols <- FALSE
 ```
 
 1. Referring to the [NYT article](https://www.nytimes.com/2018/10/01/upshot/maps-neighborhoods-shape-child-poverty.html):
@@ -253,6 +253,11 @@ ggplot(data = d, aes(x = kfr_white_p25, y = kfr_white_p75, weight = d$count_whit
 # - 
 
 # job density
+reg = lm(kfr_pooled_p25 ~ mean_commutetime2000 + poor_share2000 + poor_share2010 +
+           ann_avg_job_growth_2004_2013 + job_density_2013 +
+           singleparent_share1990 + singleparent_share2000 + singleparent_share2010, 
+         data = d, weights = count_pooled)
+summary(reg)
 
 ```
 
